@@ -4,6 +4,7 @@ _This page is primarily targeted at maintainers and contributors_
 
 The idea of these guidelines is to form a general consensus about the method used and help progress towards the general goal of the VW project to create a very fast, efficient, and capable learning algorithm
 
+
 # Guidelines
 
 1. All variables should be initialized. If explicitly allocating memory (malloc), ensure it has been zeroed.
