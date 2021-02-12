@@ -11,19 +11,30 @@ The idea of these guidelines is to form a general consensus about the method use
 2. Memory allocation is avoided by reusing allocated memory where possible. 
 3. Floats are preferred over doubles.   Doubles are only used for accumulators.
 4. Templates are used to eliminate duplicate code and in some places to remove branches from inner loops.
-5. Pass by reference is the default, except for objects of pointer size.  (Some older code is pass-by-pointer.)
+5. Pass by reference is the default, except for objects of pointer size. Use const reference whenever possible.
 6. All learning reductions are confined to a single file with a single entry point. 
 7. Learning reductions transform an example from one problem type to another.  
     * A problem type is defined by (label, prediction, features)
-8. The execution of the machine is explicitly traceable:
-    * Memory allocation is explicit (... except for portions of the code by some people who love objects)
-    * Memory destruction is explicit.
-    * Function pointer interfaces are explicit.
-9. All I/O of core objects is by reversible functions.
+8. Don't manually manage memory. Don't use new/delete, malloc/free. Use RAII and smart pointers whenever possible.
+9. Function pointer interfaces are explicit.
 10. All examples are handled by the same stack of reductions.  
 11. Examples are passed by function call.  
-12. It’s not working until there are no warnings and Valgrind says it’s clean.
+12. It’s not working until:
+    - There are no warnings
+    - Valgrind says it’s clean
+    - It is running in CI
 13. Prefer to use fixed size types where possible. Example: `uint32_t`
+14. Unions are not allowed
+15. C style casts are not allowed. Use `reinterpret_cast`
+16. No direct access to `std::cout`, `std::cerr`. Use the VW logging interface.
+17. Use future compat whenever possible
+18. Use `constexpr` whenever possible. Use future compat if it requites C++14 or above.
+19. Code is not fast unless a benchmark proves it
+20. Reductions should not keep a reference to the all object. They should keep a reference to only what they need.
+21. Rule of zero/Rule of 5
+22. Use scoped enums over C enums
+23. Avoid global state
+24. Undefined behavior is not permitted. Not even if it is faster. Correctness is more important than speed.
 
 ## Exception Policy
 1. If an error state can be handled locally, that should always be what we do.  
