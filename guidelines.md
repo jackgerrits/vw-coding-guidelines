@@ -4,14 +4,13 @@ _This page is primarily targeted at maintainers and contributors_
 
 The idea of these guidelines is to form a general consensus about the method used and help progress towards the general goal of the VW project to create a very fast, efficient, and capable learning algorithm
 
-
 # Guidelines
 
 1. All variables should be initialized. If explicitly allocating memory (malloc), ensure it has been zeroed.
 2. Memory allocation is avoided by reusing allocated memory where possible. 
 3. Floats are preferred over doubles.   Doubles are only used for accumulators.
 4. Templates are used to eliminate duplicate code and in some places to remove branches from inner loops.
-5. Pass by reference is the default, except for objects of pointer size. Use const reference whenever possible.
+5. Pass by reference is the default, except for objects of pointer size. Use a const reference whenever possible.
 6. All learning reductions are confined to a single file with a single entry point. 
 7. Learning reductions transform an example from one problem type to another.  
     * A problem type is defined by (label, prediction, features)
@@ -27,8 +26,8 @@ The idea of these guidelines is to form a general consensus about the method use
 14. Unions are not allowed
 15. C style casts are not allowed. Use `reinterpret_cast`
 16. No direct access to `std::cout`, `std::cerr`. Use the VW logging interface.
-17. Use future compat whenever possible
-18. Use `constexpr` whenever possible. Use future compat if it requites C++14 or above.
+17. Use [future compat](https://github.com/VowpalWabbit/vowpal_wabbit/blob/master/explore/future_compat.h) whenever possible
+18. Use `constexpr` whenever possible. Use [future compat](https://github.com/VowpalWabbit/vowpal_wabbit/blob/master/explore/future_compat.h) if it requires C++14 or above.
 19. Code is not fast unless a benchmark proves it
 20. Reductions should not keep a reference to the all object. They should keep a reference to only what they need.
 21. Rule of zero/Rule of 5
