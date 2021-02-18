@@ -14,7 +14,7 @@ The idea of these guidelines is to form a general consensus about the method use
 6. All learning reductions are confined to a single file with a single entry point. 
 7. Learning reductions transform an example from one problem type to another.  
     * A problem type is defined by (label, prediction, features)
-8. Don't manually manage memory. Don't use new/delete, malloc/free. Use RAII and smart pointers whenever possible.
+8. Don't manually manage memory. Don't use `new`/`delete`, `malloc`/`free`. Use RAII and smart pointers whenever possible.
 9. Function pointer interfaces are explicit.
 10. All examples are handled by the same stack of reductions.  
 11. Examples are passed by function call.  
