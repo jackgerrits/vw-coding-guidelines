@@ -34,6 +34,7 @@ The idea of these guidelines is to form a general consensus about the method use
 22. Use scoped enums over C enums
 23. Avoid global state
 24. Undefined behavior is not permitted. Not even if it is faster. Correctness is more important than speed.
+25. Use `nodiscard` whenever possible
 
 ## Exception Policy
 1. If an error state can be handled locally, that should always be what we do.  
