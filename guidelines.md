@@ -8,33 +8,37 @@ The idea of these guidelines is to form a general consensus about the method use
 
 1. All variables should be initialized. If explicitly allocating memory (malloc), ensure it has been zeroed.
 2. Memory allocation is avoided by reusing allocated memory where possible. 
-3. Floats are preferred over doubles.   Doubles are only used for accumulators.
+3. Floats are preferred over doubles. Doubles are only used for accumulators.
 4. Templates are used to eliminate duplicate code and in some places to remove branches from inner loops.
 5. Pass by reference is the default, except for objects of pointer size. Use a const reference whenever possible.
 6. All learning reductions are confined to a single file with a single entry point. 
 7. Learning reductions transform an example from one problem type to another.  
-    * A problem type is defined by (label, prediction, features)
+  - A problem type is defined by (label, prediction, features)
 8. Don't manually manage memory. Don't use `new`/`delete`, `malloc`/`free`. Use RAII and smart pointers whenever possible.
-9. Function pointer interfaces are explicit.
-10. All examples are handled by the same stack of reductions.  
-11. Examples are passed by function call.  
-12. It’s not working until:
-    - There are no warnings
-    - Valgrind says it’s clean
-    - It is running in CI
-13. Prefer to use fixed size types where possible. Example: `uint32_t`
-14. Unions are not allowed
-15. C style casts are not allowed. Use `reinterpret_cast`
-16. No direct access to `std::cout`, `std::cerr`. Use the VW logging interface.
-17. Use [future compat](https://github.com/VowpalWabbit/vowpal_wabbit/blob/master/explore/future_compat.h) whenever possible
-18. Use `constexpr` whenever possible. Use [future compat](https://github.com/VowpalWabbit/vowpal_wabbit/blob/master/explore/future_compat.h) if it requires C++14 or above.
-19. Code is not fast unless a benchmark proves it
-20. Reductions should not keep a reference to the all object. They should keep a reference to only what they need.
-21. Rule of zero/Rule of 5
-22. Use scoped enums over C enums
-23. Avoid global state
-24. Undefined behavior is not permitted. Not even if it is faster. Correctness is more important than speed.
-25. Use `nodiscard` whenever possible
+  - [`std::unique_ptr`](https://en.cppreference.com/w/cpp/memory/unique_ptr) is used to represent unique ownership 
+  - [`std::shared_ptr`](https://en.cppreference.com/w/cpp/memory/shared_ptr) is used to represent shared ownership
+9. I/O functions should come in pairs. e.g. `read`/`write`
+10. Function pointer interfaces are explicit.
+11. All examples are handled by the same stack of reductions.  
+12. Examples are passed by function call.  
+13. It’s not working until:
+  - There are no warnings
+  - Valgrind says it’s clean
+  - It is running in CI
+14. Prefer to use fixed size types where possible. Example: `uint32_t`
+15. Untagged unions are not allowed
+16. C style casts are not allowed. Use `reinterpret_cast`
+17. No direct access to `std::cout`, `std::cerr`. Use the VW logging interface.
+18. Use [future compat](https://github.com/VowpalWabbit/vowpal_wabbit/blob/master/explore/future_compat.h) whenever possible. This is used for features available in newer versions of C++ but we must conditionally support because VW targets C++11.
+  1. Use [`constexpr`](https://en.cppreference.com/w/cpp/language/constexpr) whenever possible. Use [future compat](https://github.com/VowpalWabbit/vowpal_wabbit/blob/master/explore/future_compat.h) if it requires C++14 or above.
+  2. Use [`nodiscard`](https://en.cppreference.com/w/cpp/language/attributes/nodiscard) whenever possible
+20. Code is not fast unless a benchmark proves it
+21. Reductions should not keep a reference to the all object. They should keep a reference to only what they need.
+22. [Rule of 0/3/5](https://en.cppreference.com/w/cpp/language/rule_of_three)
+23. Use [scoped enums](https://en.cppreference.com/w/cpp/language/enum#Scoped_enumerations) over C enums
+24. Avoid global state
+25. Undefined behavior is not permitted. Not even if it is faster. Correctness is more important than speed.
+
 
 ## Exception Policy
 1. If an error state can be handled locally, that should always be what we do.  
