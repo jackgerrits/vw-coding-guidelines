@@ -22,9 +22,9 @@ The idea of these guidelines is to form a general consensus about the method use
 11. All examples are handled by the same stack of reductions.  
 12. Examples are passed by function call.  
 13. It’s not working until:
-  - There are no warnings
-  - Valgrind says it’s clean
-  - It is running in CI
+    - There are no warnings
+    - Valgrind says it’s clean
+    - It is running in CI
 14. Prefer to use fixed size types where possible. Example: `uint32_t`
 15. Untagged unions are not allowed
 16. C style casts are not allowed. Use `reinterpret_cast`
@@ -32,12 +32,12 @@ The idea of these guidelines is to form a general consensus about the method use
 18. Use [future compat](https://github.com/VowpalWabbit/vowpal_wabbit/blob/master/explore/future_compat.h) whenever possible. This is used for features available in newer versions of C++ but we must conditionally support because VW targets C++11.
     1. Use [`constexpr`](https://en.cppreference.com/w/cpp/language/constexpr) whenever possible. Use [future compat](https://github.com/VowpalWabbit/vowpal_wabbit/blob/master/explore/future_compat.h) if it requires C++14 or above.
     2. Use [`nodiscard`](https://en.cppreference.com/w/cpp/language/attributes/nodiscard) whenever possible
-20. Code is not fast unless a benchmark proves it
-21. Reductions should not keep a reference to the all object. They should keep a reference to only what they need.
-22. [Rule of 0/3/5](https://en.cppreference.com/w/cpp/language/rule_of_three)
-23. Use [scoped enums](https://en.cppreference.com/w/cpp/language/enum#Scoped_enumerations) over C enums
-24. Avoid global state
-25. Undefined behavior is not permitted. Not even if it is faster. Correctness is more important than speed.
+19. Code is not fast unless a benchmark proves it
+20. Reductions should not keep a reference to the all object. They should keep a reference to only what they need.
+21. [Rule of 0/3/5](https://en.cppreference.com/w/cpp/language/rule_of_three)
+22. Use [scoped enums](https://en.cppreference.com/w/cpp/language/enum#Scoped_enumerations) over C enums
+23. Avoid global state
+24. Undefined behavior is not permitted. Not even if it is faster. Correctness is more important than speed.
 
 
 ## Exception Policy
